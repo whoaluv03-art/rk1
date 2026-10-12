@@ -1,0 +1,34 @@
+<%- include('partials/head', { pageTitle, description }) %>
+<%- include('partials/header', { company, activePage }) %>
+
+<main class="article-page wrap">
+  <a class="back-link" href="/#posts">← Все проекты и статьи</a>
+  <article class="article">
+    <header class="article-header">
+      <p class="eyebrow"><%= post.category %></p>
+      <h1 class="article-title"><%= post.title %></h1>
+      <p class="article-meta"><%= post.publishedAt %> · <%= post.readingTime %> · <%= post.area %> · <%= post.location %></p>
+    </header>
+    <img class="article-image" src="<%= post.image %>" alt="<%= post.imageAlt %>">
+    <div class="article-content">
+      <% post.content.forEach((paragraph) => { %>
+        <p><%= paragraph %></p>
+      <% }) %>
+    </div>
+  </article>
+
+  <% if (relatedPosts.length) { %>
+    <section class="related-posts">
+      <div class="section-head">
+        <div><p class="eyebrow">Продолжить чтение</p><h2 class="section-title">Ещё из <em>журнала.</em></h2></div>
+      </div>
+      <div class="post-grid">
+        <% relatedPosts.forEach((post) => { %>
+          <%- include('partials/post-card', { post }) %>
+        <% }) %>
+      </div>
+    </section>
+  <% } %>
+</main>
+
+<%- include('partials/footer', { company }) %>

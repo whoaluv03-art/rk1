@@ -1,0 +1,87 @@
+<%- include('partials/head', { pageTitle, description }) %>
+<%- include('partials/header', { company, activePage }) %>
+
+<main id="top">
+  <section class="hero wrap" aria-labelledby="hero-title">
+    <div class="hero-photo">
+      <img src="<%= company.hero.image %>" alt="<%= company.hero.imageAlt %>" fetchpriority="high">
+      <div class="hero-copy">
+        <p class="eyebrow"><%= company.hero.eyebrow %></p>
+        <h1 id="hero-title"><%= company.hero.title %><br><em><%= company.hero.emphasis %></em></h1>
+        <p><%= company.hero.description %></p>
+        <a class="button" href="#contacts">Обсудить проект
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M4 12h15m-6-6 6 6-6 6"/></svg>
+        </a>
+      </div>
+      <div class="hero-note"><strong>12 лет</strong><span>строим дома для спокойной и красивой жизни</span></div>
+    </div>
+    <div class="facts" aria-label="О компании в цифрах">
+      <% stats.forEach((stat) => { %>
+        <div class="fact"><strong><%= stat.value %></strong><span><%= stat.label %></span></div>
+      <% }) %>
+    </div>
+  </section>
+
+  <section class="section wrap" id="services">
+    <div class="section-head">
+      <div><p class="eyebrow">Чем помогаем</p><h2 class="section-title">Весь путь до дома.<br><em>И чуть дальше.</em></h2></div>
+      <p class="section-intro">Берём на себя сложные решения и держим процесс под контролем, чтобы вам оставалось выбирать детали.</p>
+    </div>
+    <div class="services">
+      <% services.forEach((service) => { %>
+        <article class="service">
+          <div class="service-number"><%= service.number %></div>
+          <h3><%= service.title %></h3>
+          <p><%= service.description %></p>
+        </article>
+      <% }) %>
+    </div>
+  </section>
+
+  <section class="projects" id="posts">
+    <div class="wrap">
+      <div class="section-head">
+        <div><p class="eyebrow">Журнал проектов</p><h2 class="section-title">Дома и заметки<br>о <em>строительстве.</em></h2></div>
+        <p class="section-intro">Истории проектов и практические советы для тех, кто планирует загородный дом.</p>
+      </div>
+      <% if (posts.length) { %>
+        <div class="post-grid">
+          <% posts.forEach((post) => { %>
+            <%- include('partials/post-card', { post }) %>
+          <% }) %>
+        </div>
+      <% } else { %>
+        <p class="empty-state">Записей пока нет. Загляните сюда позже.</p>
+      <% } %>
+    </div>
+  </section>
+
+  <section class="section wrap approach" id="approach">
+    <div class="approach-aside"><p class="eyebrow">Спокойно и прозрачно</p><h2 class="section-title">Строительство<br>без <em>сюрпризов.</em></h2><p>Вы понимаете, что происходит на каждом этапе, сколько это стоит и кто за это отвечает.</p></div>
+    <div class="steps">
+      <% steps.forEach((step, index) => { %>
+        <article class="step">
+          <span class="step-number"><%= String(index + 1).padStart(2, '0') %></span>
+          <div><h3><%= step.title %></h3><p><%= step.description %></p></div>
+        </article>
+      <% }) %>
+    </div>
+  </section>
+
+  <section class="contact" id="contacts">
+    <div class="wrap contact-inner">
+      <div class="contact-copy"><p class="eyebrow">Первый шаг — разговор</p><h2 class="section-title">Расскажите,<br>какой дом <em>ваш.</em></h2><p>Обсудим участок, идеи и бюджет. Подскажем, с чего начать и на что обратить внимание.</p>
+        <div class="contact-details"><a href="tel:<%= company.phoneHref %>"><span>Позвонить</span><%= company.phone %></a><a href="mailto:<%= company.email %>"><span>Написать</span><%= company.email %></a></div>
+      </div>
+      <form class="contact-form" action="mailto:<%= company.email %>" method="post" enctype="text/plain">
+        <div class="field"><label for="name">Как к вам обращаться</label><input id="name" name="Имя" autocomplete="name" placeholder="Ваше имя" required></div>
+        <div class="field"><label for="phone">Телефон или почта</label><input id="phone" name="Контакт" autocomplete="tel" placeholder="+7 (___) ___-__-__" required></div>
+        <div class="field full"><label for="service">Что вас интересует</label><select id="service" name="Интерес" required><option value="" disabled selected>Выберите направление</option><% services.forEach((service) => { %><option><%= service.title %></option><% }) %><option>Пока хочу посоветоваться</option></select></div>
+        <div class="field full"><label for="message">Пара слов о проекте</label><textarea id="message" name="Сообщение" placeholder="Участок, площадь, сроки — если уже знаете"></textarea></div>
+        <div class="form-bottom"><button class="button" type="submit">Отправить заявку <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M4 12h15m-6-6 6 6-6 6"/></svg></button><small>Откроется ваша почтовая программа с готовым письмом.</small></div>
+      </form>
+    </div>
+  </section>
+</main>
+
+<%- include('partials/footer', { company }) %>

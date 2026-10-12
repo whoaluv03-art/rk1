@@ -1,0 +1,13 @@
+<%- include('partials/head', { pageTitle, description }) %>
+<%- include('partials/header', { company, activePage }) %>
+
+<main class="not-found wrap">
+  <p class="eyebrow">Ошибка 404</p>
+  <h1 class="section-title">Такой страницы<br><em>пока нет.</em></h1>
+  <p>Адрес <code><%= requestedPath %></code> не найден. Возможно, страница переехала или ссылка устарела.</p>
+  <a class="button" href="/">Вернуться на главную
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M4 12h15m-6-6 6 6-6 6"/></svg>
+  </a>
+</main>
+
+<%- include('partials/footer', { company }) %>

@@ -1,0 +1,20 @@
+<header class="header">
+  <div class="wrap header-inner">
+    <a class="brand" href="/" aria-label="<%= company.name %> — на главную">
+      <span class="brand-mark" aria-hidden="true">Ф</span>
+      <span><%= company.brand %></span>
+    </a>
+    <nav class="nav" id="main-nav" aria-label="Главная навигация">
+      <a href="/#services">Услуги</a>
+      <a href="/#posts" <%- activePage === 'posts' ? 'aria-current="page"' : '' %>>Проекты и статьи</a>
+      <a href="/about" <%- activePage === 'about' ? 'aria-current="page"' : '' %>>О проекте</a>
+      <a href="/#contacts">Контакты</a>
+    </nav>
+    <div class="header-right">
+      <a class="phone" href="tel:<%= company.phoneHref %>"><%= company.phone %></a>
+      <button class="menu-toggle" type="button" aria-label="Открыть меню" aria-expanded="false" aria-controls="main-nav">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" aria-hidden="true"><path d="M4 7h16M4 12h16M4 17h16"/></svg>
+      </button>
+    </div>
+  </div>
+</header>

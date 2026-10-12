@@ -1,0 +1,17 @@
+<article class="project">
+  <a class="post-card-link" href="/posts/<%= post.slug %>">
+    <div class="project-image">
+      <img src="<%= post.image %>" alt="<%= post.imageAlt %>" loading="lazy">
+    </div>
+    <div class="project-caption">
+      <div>
+        <p class="post-category"><%= post.category %> · <%= post.publishedAt %></p>
+        <h3><%= post.title %></h3>
+        <p><%= post.excerpt %></p>
+      </div>
+      <span class="project-arrow" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M7 17 17 7M7 7h10v10"/></svg>
+      </span>
+    </div>
+  </a>
+</article>
